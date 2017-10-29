@@ -1,0 +1,14 @@
+{
+    "name": "raf/impersonate",
+    "description": "Impersonate is a plugin that allows to you to authenticate as your users",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Nageswara Rao",
+            "email": "nag.samayam@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
