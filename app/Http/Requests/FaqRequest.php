@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class NewsRequest extends BaseRequest
+class FaqRequest extends BaseRequest
 {
     /**
      * Determine if the user is authorized to make this request.

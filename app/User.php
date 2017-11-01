@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Models\Faq;
 use App\Models\News;
+use App\Models\Review;
 use App\Models\Traits\HasRole;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
@@ -60,5 +62,15 @@ class User extends Authenticatable
     public function news(): HasMany
     {
         return $this->hasMany(News::class);
+    }
+
+    public function faqs(): HasMany
+    {
+        return $this->hasMany(Faq::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
     }
 }

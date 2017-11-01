@@ -43,15 +43,14 @@
                 <a href="{{ route('news') }}"><i class="fa fa-newspaper-o"></i> <span
                             class="nav-label">News</span> </a>
             </li>
+            <li>
+                <a href="{{ route('faqs') }}"><i class="fa fa-question"></i> <span
+                            class="nav-label">FAQs</span> </a>
+            </li>
             {{--<li>
                 <a href="{{ route('reviews.index') }}"><i class="fa fa-star"></i> <span
                             class="nav-label">Reviews</span> </a>
             </li>
-            <li>
-                <a href="{{ route('faqs.index') }}"><i class="fa fa-question"></i> <span
-                            class="nav-label">FAQs</span> </a>
-            </li>
-
             <li>
                 <a href="#"><i class="fa fa-file-text-o"></i> <span class="nav-label">Pages</span><span
                             class="fa arrow"></span></a>
