@@ -57,8 +57,7 @@
                     <div class="ibox-title">
                         <div class="ibox-tools">
                             <h5>sections</h5>
-
-                            <div class="ibox-tools">
+                            {{--<div class="ibox-tools">
                                 <a href="{{ route('sections.create') }}" class="btn btn-rounded btn-primary btn-sm"
                                    type="button" title="Add New section"><i
                                             class="fa fa-plus-circle"></i> Add New Section
@@ -68,7 +67,7 @@
                                             class="fa fa-trash"></i> Delete
                                 </button>
                                 <input type="hidden" name="action_type" id="action_type">
-                            </div>
+                            </div>--}}
                         </div>
                     </div>
                     <div class="ibox-content table-responsive">
@@ -80,7 +79,7 @@
                                     <th style="width:5%;"><input type="checkbox" id="check_all" class="i-checks"/>
                                     </th>
                                     <th data-hide="phone">Title</th>
-                                    <th class="text-right">Action</th>
+                                    {{--<th class="text-right">Action</th>--}}
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -93,7 +92,7 @@
                                         <td>
                                             {{$section->title}}
                                         </td>
-                                        <td class="text-right">
+                                        {{--<td class="text-right">
                                             <div class="btn-group">
                                                 <button data-toggle="dropdown"
                                                         class="btn btn-warning btn-sm dropdown-toggle">Options <span
@@ -117,7 +116,7 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        </td>
+                                        </td>--}}
                                     </tr>
                                 @endforeach
                                 </tbody>

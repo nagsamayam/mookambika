@@ -2,7 +2,9 @@
 
 namespace App;
 
+use App\Models\News;
 use App\Models\Traits\HasRole;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -53,5 +55,10 @@ class User extends Authenticatable
     {
         $password = $this->getAuthPassword();
         return $password !== '' && $password !== null;
+    }
+
+    public function news(): HasMany
+    {
+        return $this->hasMany(News::class);
     }
 }

@@ -21,3 +21,17 @@ if (!function_exists('timer')) {
         return microtime(true) - $start . " Seconds";
     }
 }
+
+if (!function_exists('tagsForDropdown')) {
+    function tagsForDropdown($taggables)
+    {
+        $tags = [];
+        foreach ($taggables as $taggable) {
+            foreach ($taggable->tags as $tag) {
+                $tags[$tag->id] = $tag->title;
+            }
+        }
+        return $tags;
+    }
+
+}

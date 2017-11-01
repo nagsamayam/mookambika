@@ -42,7 +42,10 @@ Route::prefix('secure')
             'index' => 'sections',
             'destroy' => 'sections.delete',
         ]]);
-        Route::resource('news', 'NewsController');
+        Route::resource('news', 'NewsController', ['names' => [
+            'index' => 'news',
+            'destroy' => 'news.delete',
+        ]]);
         Route::resource('faqs', 'FaqsController');
         Route::resource('footers', 'FootersController');
         Route::resource('reviews', 'ReviewsController');
@@ -50,4 +53,5 @@ Route::prefix('secure')
         Route::resource('pages', 'pagesController');
         Route::post('/tags/bulk-actions', 'TagsController@bulkAction')->name('tags.actions');
         Route::post('/sections/bulk-actions', 'SectionsController@bulkAction')->name('sections.actions');
+        Route::post('/news/bulk-actions', 'NewsController@bulkAction')->name('news.actions');
     });
