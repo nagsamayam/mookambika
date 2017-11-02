@@ -47,11 +47,11 @@
                 <a href="{{ route('faqs') }}"><i class="fa fa-question"></i> <span
                             class="nav-label">FAQs</span> </a>
             </li>
-            {{--<li>
-                <a href="{{ route('reviews.index') }}"><i class="fa fa-star"></i> <span
+            <li>
+                <a href="{{ route('reviews') }}"><i class="fa fa-star"></i> <span
                             class="nav-label">Reviews</span> </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#"><i class="fa fa-file-text-o"></i> <span class="nav-label">Pages</span><span
                             class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
