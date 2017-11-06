@@ -17,9 +17,11 @@ class CreateFootersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id')->nullable();
             $table->string('title');
-            $table->text('content')->nullable();
+            $table->jsonb('content')->nullable();
             $table->timestamps();
-            $table->softDeletes()->index();
+            $table->timestamp('published_at')->nullable();
+
+            $table->index(['published_at', 'created_at']);
         });
     }
 

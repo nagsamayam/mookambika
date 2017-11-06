@@ -33,5 +33,18 @@ if (!function_exists('tagsForDropdown')) {
         }
         return $tags;
     }
+}
 
+if (! function_exists('activeLabelClass')) {
+    function activeLabelClass($value)
+    {
+        return $value ? 'primary' : 'danger';
+    }
+}
+
+if (! function_exists('activeLabelText')) {
+    function activeLabelText($value)
+    {
+        return $value ? 'Active' : 'Deleted';
+    }
 }

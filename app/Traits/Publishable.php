@@ -56,4 +56,14 @@ trait Publishable
         return Carbon::parse($this->published_at)->toFormattedDateString();
     }
 
+    public static function latestRecord()
+    {
+        return static::recent()->published()->first(['id', 'published_at']);
+    }
+
+    public static function oldestRecord()
+    {
+        return static::legacy()->published()->first(['id', 'published_at']);
+    }
+
 }

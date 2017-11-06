@@ -30,5 +30,6 @@ $factory->define(\App\Models\Footer::class, function (Faker $faker) {
             'column3' => [
                 'title' => $faker->text(40),
                 'links' => $column3
-            ]])];
+            ]]),
+    ];
 });

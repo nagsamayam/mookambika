@@ -2,15 +2,14 @@
 
 namespace App;
 
-use App\Models\News;
 use App\Models\Traits\HasRole;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Traits\UserRelationshipTrait as RelationshipTrait;
 
 class User extends Authenticatable
 {
-    use HasRole, Notifiable;
+    use HasRole, Notifiable, RelationshipTrait;
 
     protected $fillable = [
         'full_name', 'email', 'password', 'confirmed',
@@ -55,10 +54,5 @@ class User extends Authenticatable
     {
         $password = $this->getAuthPassword();
         return $password !== '' && $password !== null;
-    }
-
-    public function news(): HasMany
-    {
-        return $this->hasMany(News::class);
     }
 }

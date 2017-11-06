@@ -46,12 +46,24 @@ Route::prefix('secure')
             'index' => 'news',
             'destroy' => 'news.delete',
         ]]);
-        Route::resource('faqs', 'FaqsController');
-        Route::resource('footers', 'FootersController');
-        Route::resource('reviews', 'ReviewsController');
+        Route::resource('faqs', 'FaqsController', ['names' => [
+            'index' => 'faqs',
+            'destroy' => 'faqs.delete',
+        ]]);
+        Route::resource('reviews', 'ReviewsController', ['names' => [
+            'index' => 'reviews',
+            'destroy' => 'reviews.delete',
+        ]]);
+        Route::resource('footers', 'FootersController', ['names' => [
+            'index' => 'footers',
+            'destroy' => 'footers.delete',
+        ]]);
         Route::resource('events', 'EventsController');
         Route::resource('pages', 'pagesController');
         Route::post('/tags/bulk-actions', 'TagsController@bulkAction')->name('tags.actions');
         Route::post('/sections/bulk-actions', 'SectionsController@bulkAction')->name('sections.actions');
         Route::post('/news/bulk-actions', 'NewsController@bulkAction')->name('news.actions');
+        Route::post('/faqs/bulk-actions', 'FaqsController@bulkAction')->name('faqs.actions');
+        Route::post('/reviews/bulk-actions', 'ReviewsController@bulkAction')->name('reviews.actions');
+        Route::post('/footers/bulk-actions', 'FootersController@bulkAction')->name('footers.actions');
     });

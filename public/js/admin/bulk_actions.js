@@ -30,3 +30,25 @@ function faq_action(type) {
         $('#faq_form').submit();
     }
 }
+
+function review_action(type) {
+    if (type != 'export' && $('.check').filter(':checked').length == 0) {
+        alert('Please select the review item to ' + type);
+        return false;
+    }
+    if (confirm('Are you sure want to ' + type + '?')) {
+        $('#action_type').val(type);
+        $('#review_form').submit();
+    }
+}
+
+function footer_action(type) {
+    if (type != 'export' && $('.check').filter(':checked').length == 0) {
+        alert('Please select the footer item to ' + type);
+        return false;
+    }
+    if (confirm('Are you sure want to ' + type + '?')) {
+        $('#action_type').val(type);
+        $('#footer_form').submit();
+    }
+}

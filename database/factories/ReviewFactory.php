@@ -10,7 +10,7 @@ $factory->define(\App\Models\Review::class, function (Faker $faker) {
         'reviewer_location' => array_random(['Hyderabad', 'Bangalore', 'Chennai', 'Delhi', 'Kolkata']),
         'content' => $faker->paragraph(5),
         'rating' => array_random([1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5]),
-        'published_at' => $faker->dateTimeBetween($startDate = '-2 months', $endDate = 'now'),
+        'published_at' => $faker->date(),
         'created_at' => $faker->dateTimeBetween($startDate = '-4 months', $endDate = '-3 months'),
     ];
 });

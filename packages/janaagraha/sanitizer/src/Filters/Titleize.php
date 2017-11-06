@@ -15,7 +15,7 @@ class Titleize implements Filter
      */
     public function apply($value, $options = [])
     {
-        return is_string($value) ? title_case(strtolower($value)) : $value;
+        return is_string($value) ? title_case($value) : $value;
     }
 
 }

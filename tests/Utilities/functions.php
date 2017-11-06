@@ -1,8 +1,12 @@
 <?php
 
-function create($class, $attributes = [], $times = null)
+function create($class, $attributes = [], $times = 1)
 {
-    return factory($class, $times)->create($attributes);
+    $data = factory($class)->times($times)->create($attributes);
+    if ($times > 1) {
+        return $data;
+    }
+    return $data->first();
 }
 
 function make($class, $attributes = [], $times = null)
