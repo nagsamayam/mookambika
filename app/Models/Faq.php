@@ -29,13 +29,13 @@ class Faq extends Model
         return $filters->apply($query);
     }
 
-    public static function latestRecord()
+    public function publish()
     {
-        return static::recent()->published()->first(['id', 'published_at']);
+        $this->restore();
     }
 
-    public static function oldestRecord()
+    public function unpublish()
     {
-        return static::legacy()->published()->first(['id', 'published_at']);
+        $this->update(['published_at' => null]);
     }
 }

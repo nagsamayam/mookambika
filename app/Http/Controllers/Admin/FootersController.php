@@ -2,84 +2,122 @@
 
 namespace App\Http\Controllers\Admin;
 
+use DB;
+use Auth;
+use App\Models\Footer;
 use Illuminate\Http\Request;
+use App\Filters\FooterFilters;
+use App\Http\Requests\FooterRequest;
 use App\Http\Controllers\Controller;
 
 class FootersController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request, FooterFilters $filters)
     {
-        //
+        $footers = $this->getFooters($filters);
+        $footerCount = $footers->total();
+        $latestFooter = Footer::latest()->first(['created_at']);
+        $oldestFooter = Footer::oldest()->first(['created_at']);
+        $footers->withPath(request()->getUri());
+
+        return view('admin.footers.index', compact('footers', 'footerCount',
+            'latestFooter', 'oldestFooter'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('admin.footers.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(FooterRequest $request)
     {
-        //
+        $footer = $this->_createFooter($request);
+        $notification = $this->notification('Saved successfully', 'success');
+
+        return redirect(route('footers'))->with($notification);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Footer $footer)
     {
-        //
+        return view('admin.footers.edit', compact('footer'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Footer $footer)
     {
-        //
+        $footer->delete();
+        $notification = $this->notification('Deleted successfully', 'success');
+
+        return redirect(route('footers'))->with($notification);
+    }
+
+    public function bulkAction(Request $request)
+    {
+        $action = $request->get('action_type');
+        $ids = $request->get('footer_ids');
+        if ($action === 'unpublish') {
+            Footer::whereIn('id', $ids)->delete();
+        } elseif ($action === 'publish') {
+            Footer::whereIn('id', $ids)->restore();
+        } elseif ($action === 'delete') {
+            Footer::whereIn('id', $ids)->forceDelete();
+        }
+        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+
+        return redirect(route('footers'))->with($notification);
+    }
+
+    protected function getFooters($filters)
+    {
+        $perPage = (int)request('per_page');
+        $perPage = $perPage > 0 && $perPage < 100 ? $perPage : 25;
+
+        return Footer::filter($filters)
+            ->latest()
+            ->unless(request('status'), function ($query) {
+                return $query->withTrashed();;
+            })
+            ->paginate($perPage, ['id', 'title', 'created_at', 'deleted_at']);
+    }
+
+    private function _createFooter(FooterRequest $request)
+    {
+        $col1Data = $this->formatFormData($request->get('col1_titles'), $request->get('col1_links'), $request->get('col1_link_targets') ?? ['off']);
+        $col2Data = $this->formatFormData($request->get('col2_titles'), $request->get('col2_links'), $request->get('col2_link_targets') ?? ['off']);
+        $col3Data = $this->formatFormData($request->get('col3_titles'), $request->get('col3_links'), $request->get('col3_link_targets') ?? ['off']);
+
+        $footer = Auth::user()->footers()
+            ->create([
+                'title' => $request->get('title'),
+                'content' => json_encode([
+                    'column1' => $col1Data,
+                    'column2' => $col2Data,
+                    'column3' => $col3Data,
+                ])
+            ]);
+
+        return $footer;
+    }
+
+    private function formatFormData(array $titles, array $links, array $linkTargets = [])
+    {
+        $data = [];
+        if (count($titles) === count($links) && count($linkTargets)) {
+            foreach ($titles as $key1 => $title) {
+                foreach ($links as $key2 => $link) {
+                    // foreach ($linkTargets as $key3 => $target) {
+                    if ($key1 == $key2) {
+                        $data[$key1] = ['title' => $title, 'link' => $link, 'new_window' => 'off'];
+                    }
+                    // }
+                }
+            }
+        }
+
+        return $data;
     }
 }

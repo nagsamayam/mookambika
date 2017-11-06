@@ -54,7 +54,10 @@ Route::prefix('secure')
             'index' => 'reviews',
             'destroy' => 'reviews.delete',
         ]]);
-        Route::resource('footers', 'FootersController');
+        Route::resource('footers', 'FootersController', ['names' => [
+            'index' => 'footers',
+            'destroy' => 'footers.delete',
+        ]]);
         Route::resource('events', 'EventsController');
         Route::resource('pages', 'pagesController');
         Route::post('/tags/bulk-actions', 'TagsController@bulkAction')->name('tags.actions');
@@ -62,4 +65,5 @@ Route::prefix('secure')
         Route::post('/news/bulk-actions', 'NewsController@bulkAction')->name('news.actions');
         Route::post('/faqs/bulk-actions', 'FaqsController@bulkAction')->name('faqs.actions');
         Route::post('/reviews/bulk-actions', 'ReviewsController@bulkAction')->name('reviews.actions');
+        Route::post('/footers/bulk-actions', 'FootersController@bulkAction')->name('footers.actions');
     });

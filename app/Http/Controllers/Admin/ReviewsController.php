@@ -66,7 +66,7 @@ class ReviewsController extends Controller
         $review->delete();
         $notification = $this->notification('Deleted successfully', 'success');
 
-        return redirect(route('Reviews'))->with($notification);
+        return redirect(route('reviews'))->with($notification);
     }
 
     public function bulkAction(Request $request)

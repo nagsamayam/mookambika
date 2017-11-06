@@ -62,7 +62,7 @@ class FaqsController extends Controller
         $faq->delete();
         $notification = $this->notification('Deleted successfully', 'success');
 
-        return redirect(route('Faqs'))->with($notification);
+        return redirect(route('faqs'))->with($notification);
     }
 
     public function bulkAction(Request $request)

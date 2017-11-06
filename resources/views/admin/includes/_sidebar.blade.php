@@ -51,6 +51,10 @@
                 <a href="{{ route('reviews') }}"><i class="fa fa-star"></i> <span
                             class="nav-label">Reviews</span> </a>
             </li>
+            <li>
+                <a href="{{ route('footers') }}"><i class="fa fa-paw"></i> <span
+                            class="nav-label">Footers</span> </a>
+            </li>
             {{--<li>
                 <a href="#"><i class="fa fa-file-text-o"></i> <span class="nav-label">Pages</span><span
                             class="fa arrow"></span></a>
