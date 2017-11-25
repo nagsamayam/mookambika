@@ -39,7 +39,7 @@
 </div>
 <!-- Scripts -->
 <!-- Mainly scripts -->
-<script src="/js/admin/jquery-3.1.1.min.js"></script>
+<script src="/js/admin/jquery-3.2.1.min.js"></script>
 <script src="/js/admin/bootstrap.min.js"></script>
 <script src="/js/admin/plugins/metisMenu/jquery.metisMenu.js"></script>
 <script src="/js/admin/plugins/slimscroll/jquery.slimscroll.min.js"></script>

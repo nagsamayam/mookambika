@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
 use Auth;
 use App\Models\Footer;
 use Illuminate\Http\Request;
@@ -24,9 +23,9 @@ class FootersController extends Controller
             'latestFooter', 'oldestFooter'));
     }
 
-    public function create()
+    public function create(Footer $footer)
     {
-        return view('admin.footers.create');
+        return view('admin.footers.create', compact('footer'));
     }
 
     public function store(FooterRequest $request)
@@ -39,12 +38,22 @@ class FootersController extends Controller
 
     public function edit(Footer $footer)
     {
-        return view('admin.footers.edit', compact('footer'));
+        $decoded_content = $footer->decodeContent();
+
+        return view('admin.footers.edit', compact('footer', 'decoded_content'));
     }
 
-    public function update(Request $request, $id)
+    public function update(FooterRequest $request, Footer $footer)
     {
-        //
+        $content = $this->_formatColumsData($request);
+        $footer->update([
+            'title' => $request->get('title'),
+            'user_id' => auth()->user()->id,
+            'content' => $content
+        ]);
+        $notification = $this->notification('Saved successfully', 'success');
+
+        return redirect(route('footers'))->with($notification);
     }
 
     public function destroy(Footer $footer)
@@ -86,18 +95,11 @@ class FootersController extends Controller
 
     private function _createFooter(FooterRequest $request)
     {
-        $col1Data = $this->formatFormData($request->get('col1_titles'), $request->get('col1_links'), $request->get('col1_link_targets') ?? ['off']);
-        $col2Data = $this->formatFormData($request->get('col2_titles'), $request->get('col2_links'), $request->get('col2_link_targets') ?? ['off']);
-        $col3Data = $this->formatFormData($request->get('col3_titles'), $request->get('col3_links'), $request->get('col3_link_targets') ?? ['off']);
-
+        $content = $this->_formatColumsData($request);
         $footer = Auth::user()->footers()
             ->create([
                 'title' => $request->get('title'),
-                'content' => json_encode([
-                    'column1' => $col1Data,
-                    'column2' => $col2Data,
-                    'column3' => $col3Data,
-                ])
+                'content' => $content
             ]);
 
         return $footer;
@@ -119,5 +121,18 @@ class FootersController extends Controller
         }
 
         return $data;
+    }
+
+    private function _formatColumsData($request)
+    {
+        $col1Data = $this->formatFormData($request->get('col1_titles'), $request->get('col1_links'), $request->get('col1_link_targets') ?? ['off']);
+        $col2Data = $this->formatFormData($request->get('col2_titles'), $request->get('col2_links'), $request->get('col2_link_targets') ?? ['off']);
+        $col3Data = $this->formatFormData($request->get('col3_titles'), $request->get('col3_links'), $request->get('col3_link_targets') ?? ['off']);
+
+        return json_encode([
+            'column1' => $col1Data,
+            'column2' => $col2Data,
+            'column3' => $col3Data,
+        ]);
     }
 }

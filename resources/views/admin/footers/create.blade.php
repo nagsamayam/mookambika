@@ -6,13 +6,13 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <div class="ibox-tools">
-                        <h5>Add FAQs Item
+                        <h5>Add Footers Item
                         </h5>
-                        @include('admin.buttons.back_to_list', ['route' => 'faqs'])
+                        @include('admin.buttons.back_to_list', ['route' => 'footers'])
                     </div>
                 </div>
                 <div class="ibox-content">
-                    {{Form::open(['route' => 'footers.store', 'class' => 'form-horizontal'])}}
+                    {!! Form::model($footer, ['route' => 'footers.store', 'class' => 'form-horizontal']) !!}
                     @include('admin.footers._form')
                     {!! Form::close() !!}
                 </div>

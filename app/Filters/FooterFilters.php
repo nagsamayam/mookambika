@@ -39,12 +39,12 @@ class FooterFilters extends Filters
 
     protected function start_date($startDate)
     {
-        return $this->builder->whereRaw("date(created_at) >= '$startDate'");
+        return $this->builder->whereDate('created_at', '>=', $startDate);
     }
 
     protected function end_date($endDate)
     {
-        return $this->builder->whereRaw("date(created_at) <= '$endDate'");
+        return $this->builder->whereDate('created_at', '<=', $endDate);
     }
 
 }

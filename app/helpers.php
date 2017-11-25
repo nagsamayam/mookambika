@@ -35,16 +35,24 @@ if (!function_exists('tagsForDropdown')) {
     }
 }
 
-if (! function_exists('activeLabelClass')) {
+if (!function_exists('activeLabelClass')) {
     function activeLabelClass($value)
     {
         return $value ? 'primary' : 'danger';
     }
 }
 
-if (! function_exists('activeLabelText')) {
+if (!function_exists('activeLabelText')) {
     function activeLabelText($value)
     {
         return $value ? 'Active' : 'Deleted';
+    }
+}
+
+if (!function_exists('set_active')) {
+    function set_active($path, $strict = false, $active = 'active')
+    {
+        $path = $strict ? $path : $path . '*';
+        return Request::is($path) ? " class=$active" : '';
     }
 }

@@ -7,15 +7,15 @@
             <div class="ibox">
                 <div class="ibox-title">
                     <div class="ibox-tools">
-                        <h5>Edit FAQs Item
+                        <h5>Edit Footer Item
                         </h5>
-                        @include('admin.buttons.add', ['route' => 'faqs.create'])
-                        @include('admin.buttons.back_to_list', ['route' => 'faqs'])
+                        @include('admin.buttons.add', ['route' => 'footers.create'])
+                        @include('admin.buttons.back_to_list', ['route' => 'footers'])
                     </div>
                 </div>
                 <div class="ibox-content">
-                    {!! Form::model($faq, ['route' => ['faqs.update', $faq->id], 'method' => 'put', 'class' => 'form-horizontal', 'files' => true]) !!}
-                    @include('admin.faqs._form')
+                    {!! Form::model($footer, ['route' => ['footers.update', $footer->id], 'method' => 'put', 'class' => 'form-horizontal']) !!}
+                    @include('admin.footers._edit_form')
                     {!! Form::close() !!}
                 </div>
             </div>

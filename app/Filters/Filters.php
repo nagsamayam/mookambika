@@ -64,11 +64,11 @@ abstract class Filters
 
     protected function published_start_date($startDate)
     {
-        return $this->builder->whereRaw("date(published_at) >= '$startDate'");
+        return $this->builder->whereDate('published_at', '>=', $startDate);
     }
 
     protected function published_end_date($endDate)
     {
-        return $this->builder->whereRaw("date(published_at) <= '$endDate'");
+        return $this->builder->whereDate('published_at', '<=', $endDate);
     }
 }

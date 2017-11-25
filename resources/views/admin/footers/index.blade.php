@@ -124,8 +124,10 @@
                                         </span>
                                         </td>
                                         <td class="text-right">
-                                            @include('admin.buttons.edit', ['route' => 'footers.edit', 'model' => $footer ])
-                                            @include('admin.buttons.delete', ['href' => '/secure/footers/'.$footer->id])
+                                            @if($footer->isActive())
+                                                @include('admin.buttons.edit', ['route' => 'footers.edit', 'model' => $footer ])
+                                                @include('admin.buttons.delete', ['href' => '/secure/footers/'.$footer->id])
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -4,5 +4,5 @@
    data-token="{{csrf_token()}}"
    data-method="delete"
    data-confirm="Are you sure?">
-    <i class="fa fa-trash"></i>
+    <i class="fa fa-times"></i>
 </a>

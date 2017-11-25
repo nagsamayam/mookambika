@@ -27,31 +27,31 @@
                 </div>
             </li>
 
-            <li>
+            <li{{set_active('secure', true)}}>
                 <a href="{{ route('dashboard') }}"><i class="fa fa-home"></i> <span
                             class="nav-label">Dashboard</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/tags')}}>
                 <a href="{{ route('tags') }}"><i class="fa fa-tags"></i> <span
                             class="nav-label">Tags</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/sections')}}>
                 <a href="{{ route('sections') }}"><i class="fa fa-columns"></i> <span
                             class="nav-label">Sections</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/news')}}>
                 <a href="{{ route('news') }}"><i class="fa fa-newspaper-o"></i> <span
                             class="nav-label">News</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/faqs')}}>
                 <a href="{{ route('faqs') }}"><i class="fa fa-question"></i> <span
                             class="nav-label">FAQs</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/reviews')}}>
                 <a href="{{ route('reviews') }}"><i class="fa fa-star"></i> <span
                             class="nav-label">Reviews</span> </a>
             </li>
-            <li>
+            <li{{set_active('secure/footers')}}>
                 <a href="{{ route('footers') }}"><i class="fa fa-paw"></i> <span
                             class="nav-label">Footers</span> </a>
             </li>

@@ -23,12 +23,12 @@ class FooterRequest extends BaseRequest
     {
         return [
             'title' => 'required',
-            'col1_titles.*' => 'required',
-            'col1_links.*' => 'required',
-            'col2_titles.*' => 'required',
-            'col2_links.*' => 'required',
-            'col3_titles.*' => 'required',
-            'col3_links.*' => 'required'
+            'col1_titles.*' => 'sometimes',
+            'col1_links.*' => 'sometimes',
+            'col2_titles.*' => 'sometimes',
+            'col2_links.*' => 'sometimes',
+            'col3_titles.*' => 'sometimes',
+            'col3_links.*' => 'sometimes'
         ];
     }
 
