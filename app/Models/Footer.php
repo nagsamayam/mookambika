@@ -30,5 +30,4 @@ class Footer extends Model
     {
         return $this->created_at->toDateString();
     }
-
 }

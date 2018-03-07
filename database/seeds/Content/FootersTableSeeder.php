@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\Footer;
+use Database\DisableForeignKeys;
 use Database\TruncateTable;
 use Illuminate\Database\Seeder;
-use Database\DisableForeignKeys;
 
 class FootersTableSeeder extends Seeder
 {

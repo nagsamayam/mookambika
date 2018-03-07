@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Models\Tag;
-use App\Models\Faq;
 use App\Filters\FaqFilters;
-use Illuminate\Http\Request;
-use App\Http\Requests\FaqRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FaqRequest;
+use App\Models\Faq;
+use App\Models\Tag;
+use Auth;
+use Illuminate\Http\Request;
 
 class FaqsController extends Controller
 {
@@ -70,14 +70,14 @@ class FaqsController extends Controller
         $action = $request->get('action_type');
         $ids = $request->get('faq_ids');
         Faq::destroy($ids);
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('faqs'))->with($notification);
     }
 
     protected function getFaqs(FaqFilters $filters)
     {
-        $perPage = (int)request('per_page');
+        $perPage = (int) request('per_page');
         $perPage = $perPage > 0 ? $perPage : 25;
 
         return Faq::filter($filters)

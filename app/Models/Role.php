@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     public $timestamps = false;
-    
+
     protected $fillable = ['title', 'slug'];
 
     /**
@@ -26,5 +26,4 @@ class Role extends Model
     {
         return $this->hasMany(Admin::class);
     }
-
 }

@@ -22,17 +22,17 @@ class FaqRequest extends BaseRequest
     public function rules()
     {
         return [
-            'title' => 'required|min:3',
-            'content' => 'required',
+            'title'        => 'required|min:3',
+            'content'      => 'required',
             'published_at' => 'required|date',
-            'tag_list' => 'required|distinct'
+            'tag_list'     => 'required|distinct',
         ];
     }
 
     public function filters()
     {
         return [
-            'title' => 'strip_tags|trim|capitalize_first_letter',
+            'title'   => 'strip_tags|trim|capitalize_first_letter',
             'content' => 'trim|capitalize_first_letter',
         ];
     }

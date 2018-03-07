@@ -35,27 +35,27 @@ Route::prefix('secure')
     ->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
         Route::resource('tags', 'TagsController', ['names' => [
-            'index' => 'tags',
+            'index'   => 'tags',
             'destroy' => 'tags.delete',
         ]]);
         Route::resource('sections', 'SectionsController', ['names' => [
-            'index' => 'sections',
+            'index'   => 'sections',
             'destroy' => 'sections.delete',
         ]]);
         Route::resource('news', 'NewsController', ['names' => [
-            'index' => 'news',
+            'index'   => 'news',
             'destroy' => 'news.delete',
         ]]);
         Route::resource('faqs', 'FaqsController', ['names' => [
-            'index' => 'faqs',
+            'index'   => 'faqs',
             'destroy' => 'faqs.delete',
         ]]);
         Route::resource('reviews', 'ReviewsController', ['names' => [
-            'index' => 'reviews',
+            'index'   => 'reviews',
             'destroy' => 'reviews.delete',
         ]]);
         Route::resource('footers', 'FootersController', ['names' => [
-            'index' => 'footers',
+            'index'   => 'footers',
             'destroy' => 'footers.delete',
         ]]);
         Route::resource('events', 'EventsController');

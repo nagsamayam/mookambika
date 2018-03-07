@@ -1,4 +1,5 @@
 <?php
+
 if (!function_exists('fullTitle')) {
     function fullTitle($pageTitle = ''): string
     {
@@ -6,7 +7,7 @@ if (!function_exists('fullTitle')) {
             return config('app.name');
         }
 
-        return config('app.name') . ' | ' . $pageTitle;
+        return config('app.name').' | '.$pageTitle;
     }
 }
 if (!function_exists('timer')) {
@@ -16,9 +17,10 @@ if (!function_exists('timer')) {
         if ($expression instanceof Closure) {
             $expression();
         } else {
-            eval(rtrim($expression, ';') . ';');
+            eval(rtrim($expression, ';').';');
         }
-        return microtime(true) - $start . " Seconds";
+
+        return microtime(true) - $start.' Seconds';
     }
 }
 
@@ -31,18 +33,19 @@ if (!function_exists('tagsForDropdown')) {
                 $tags[$tag->id] = $tag->title;
             }
         }
+
         return $tags;
     }
 }
 
-if (! function_exists('activeLabelClass')) {
+if (!function_exists('activeLabelClass')) {
     function activeLabelClass($value)
     {
         return $value ? 'primary' : 'danger';
     }
 }
 
-if (! function_exists('activeLabelText')) {
+if (!function_exists('activeLabelText')) {
     function activeLabelText($value)
     {
         return $value ? 'Active' : 'Deleted';

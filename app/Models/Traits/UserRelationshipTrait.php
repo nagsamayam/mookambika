@@ -3,9 +3,9 @@
 namespace App\Models\Traits;
 
 use App\Models\Faq;
+use App\Models\Footer;
 use App\Models\News;
 use App\Models\Review;
-use App\Models\Footer;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 trait UserRelationshipTrait

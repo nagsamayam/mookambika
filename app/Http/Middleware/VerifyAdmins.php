@@ -2,9 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\User;
 use Auth;
 use Closure;
-use App\User;
 
 class VerifyAdmins
 {
@@ -13,6 +13,7 @@ class VerifyAdmins
         if (Auth::guard($guard)->user()->can('admin', User::class)) {
             return $next($request);
         }
+
         return redirect('/');
     }
 }

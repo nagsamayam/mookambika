@@ -7,11 +7,11 @@ use Janaagraha\Sanitizer\Contracts\Filter;
 
 class Cast implements Filter
 {
-
     /**
      *  Capitalize the given string.
      *
-     * @param  string $value
+     * @param string $value
+     *
      * @return string
      */
     public function apply($value, $options = [])
@@ -20,26 +20,26 @@ class Cast implements Filter
         switch ($type) {
             case 'int':
             case 'integer':
-                return (int)$value;
+                return (int) $value;
             case 'real':
             case 'float':
             case 'double':
-                return (float)$value;
+                return (float) $value;
             case 'string':
-                return (string)$value;
+                return (string) $value;
             case 'bool':
             case 'boolean':
-                return (bool)$value;
+                return (bool) $value;
             case 'object':
-                return is_array($value) ? (object)$value : json_decode($value, false);
+                return is_array($value) ? (object) $value : json_decode($value, false);
             case 'array':
                 return json_decode($value, true);
             case 'collection':
                 $array = is_array($value) ? $value : json_decode($value, true);
+
                 return new Collection($array);
             default:
                 throw new \InvalidArgumentException("Wrong Sanitizer casting format: {$type}.");
         }
     }
-
 }

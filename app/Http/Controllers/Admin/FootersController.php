@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
-use Auth;
-use App\Models\Footer;
-use Illuminate\Http\Request;
 use App\Filters\FooterFilters;
-use App\Http\Requests\FooterRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\FooterRequest;
+use App\Models\Footer;
+use Auth;
+use Illuminate\Http\Request;
 
 class FootersController extends Controller
 {
@@ -66,20 +65,20 @@ class FootersController extends Controller
         } elseif ($action === 'delete') {
             Footer::whereIn('id', $ids)->forceDelete();
         }
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('footers'))->with($notification);
     }
 
     protected function getFooters($filters)
     {
-        $perPage = (int)request('per_page');
+        $perPage = (int) request('per_page');
         $perPage = $perPage > 0 && $perPage < 100 ? $perPage : 25;
 
         return Footer::filter($filters)
             ->latest()
             ->unless(request('status'), function ($query) {
-                return $query->withTrashed();;
+                return $query->withTrashed();
             })
             ->paginate($perPage, ['id', 'title', 'created_at', 'deleted_at']);
     }
@@ -92,12 +91,12 @@ class FootersController extends Controller
 
         $footer = Auth::user()->footers()
             ->create([
-                'title' => $request->get('title'),
+                'title'   => $request->get('title'),
                 'content' => json_encode([
                     'column1' => $col1Data,
                     'column2' => $col2Data,
                     'column3' => $col3Data,
-                ])
+                ]),
             ]);
 
         return $footer;

@@ -3,9 +3,9 @@
 namespace App;
 
 use App\Models\Traits\HasRole;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Traits\UserRelationshipTrait as RelationshipTrait;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -13,7 +13,7 @@ class User extends Authenticatable
 
     protected $fillable = [
         'full_name', 'email', 'password', 'confirmed',
-        'confirmation_code', 'role_id'
+        'confirmation_code', 'role_id',
     ];
 
     protected $hidden = [
@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     public function isConfirmed(): bool
     {
-        return (bool)$this->confirmed;
+        return (bool) $this->confirmed;
     }
 
     public function isUnconfirmed(): bool
@@ -42,7 +42,7 @@ class User extends Authenticatable
 
     public function confirmationCode(): string
     {
-        return (string)$this->confirmation_code;
+        return (string) $this->confirmation_code;
     }
 
     public function matchesConfirmationCode(string $code): bool
@@ -53,6 +53,7 @@ class User extends Authenticatable
     public function hasPassword(): bool
     {
         $password = $this->getAuthPassword();
+
         return $password !== '' && $password !== null;
     }
 }

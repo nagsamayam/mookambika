@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Filters\FaqFilters;
 use App\Traits\HasTags;
 use App\Traits\Publishable;
-use App\Filters\FaqFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class Faq extends Model

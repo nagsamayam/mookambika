@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
-use Auth;
-use Storage;
-use App\Models\Tag;
-use App\Models\Review;
-use Illuminate\Http\Request;
 use App\Filters\ReviewFilters;
-use App\Http\Requests\ReviewRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReviewRequest;
+use App\Models\Review;
+use App\Models\Tag;
+use Auth;
+use DB;
+use Illuminate\Http\Request;
+use Storage;
 
 class ReviewsController extends Controller
 {
@@ -74,14 +74,14 @@ class ReviewsController extends Controller
         $action = $request->get('action_type');
         $ids = $request->get('review_ids');
         Review::destroy($ids);
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('reviews'))->with($notification);
     }
 
     protected function getReviews(ReviewFilters $filters)
     {
-        $perPage = (int)request('per_page');
+        $perPage = (int) request('per_page');
         $perPage = $perPage > 0 ? $perPage : 25;
 
         return Review::filter($filters)
@@ -120,7 +120,7 @@ class ReviewsController extends Controller
             [
                 'reviewer_name', 'reviewer_avatar', 'reviewer_designation',
                 'reviewer_organization', 'reviewer_location', 'rating',
-                'content', 'published_at'
+                'content', 'published_at',
             ]
         );
     }

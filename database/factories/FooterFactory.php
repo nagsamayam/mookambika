@@ -16,20 +16,21 @@ $factory->define(\App\Models\Footer::class, function (Faker $faker) {
         $column3[$i]['href'] = $faker->url;
         $column3[$i]['new_window'] = rand(0, 1);
     }
+
     return [
-        'title' => $title,
+        'title'   => $title,
         'content' => json_encode([
             'column1' => [
                 'title' => $faker->text(30),
-                'links' => $column1
+                'links' => $column1,
             ],
             'column2' => [
                 'title' => $faker->text(40),
-                'links' => $column2
+                'links' => $column2,
             ],
             'column3' => [
                 'title' => $faker->text(40),
-                'links' => $column3
-            ]]),
+                'links' => $column3,
+            ], ]),
     ];
 });

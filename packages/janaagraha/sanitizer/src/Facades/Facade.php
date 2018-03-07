@@ -4,7 +4,7 @@ namespace Janaagraha\Sanitizer\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Sanitizer extends Facade
+class Facade extends Facade
 {
     /**
      * Get the registered name of the component.

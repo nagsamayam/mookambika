@@ -10,13 +10,13 @@ class NewsFilters extends Filters
      * @var array
      */
     protected $filters = ['status', 'search', 'sort_direction',
-        'tags', 'published_start_date', 'published_end_date'];
-
+        'tags', 'published_start_date', 'published_end_date', ];
 
     /**
      * Filter the query by a given type.
      *
-     * @param  string $status
+     * @param string $status
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function status($status)
@@ -28,6 +28,7 @@ class NewsFilters extends Filters
      * Filter the query according to the keywords.
      *
      * @param string $keyword
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function search($keyword)
@@ -65,6 +66,6 @@ class NewsFilters extends Filters
             /*
             ->orderBy(DB::raw('count(*)'), 'desc')
             ->orderBy('name', 'asc')*/
-            ;
+;
     }
 }

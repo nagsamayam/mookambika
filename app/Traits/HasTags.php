@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Traits;
 
 use App\Models\Tag;
@@ -38,10 +39,12 @@ trait HasTags
     {
         $taggables = static::with('tags:id,title')->get();
         $tags = [];
+
         return $taggables->each(function ($taggable) use ($tags) {
             $taggable->tags->each(function ($tag) {
                 $tags[$tag->id] = $tag->title;
             });
+
             return $tags;
         });
     }

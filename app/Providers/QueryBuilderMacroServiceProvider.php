@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\ServiceProvider;
 
 class QueryBuilderMacroServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,8 @@ class QueryBuilderMacroServiceProvider extends ServiceProvider
         Builder::macro('timer', function () {
             $start = microtime(true);
             $this->get();
-            return microtime(true) - $start . " Seconds";
+
+            return microtime(true) - $start.' Seconds';
         });
     }
 
