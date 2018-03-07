@@ -1,8 +1,8 @@
 <?php
 
+use Database\DisableForeignKeys;
 use Database\TruncateTable;
 use Illuminate\Database\Seeder;
-use Database\DisableForeignKeys;
 
 class SectionsTableSeeder extends Seeder
 {
@@ -21,47 +21,47 @@ class SectionsTableSeeder extends Seeder
 
         $sections = [
             [
-                'title' => 'Banner'
+                'title' => 'Banner',
             ],
             [
-                'title' => 'Text'
+                'title' => 'Text',
             ],
             [
-                'title' => 'Widget_Services'
+                'title' => 'Widget_Services',
             ],
             [
-                'title' => 'Reviews'
+                'title' => 'Reviews',
             ],
             [
-                'title' => 'FAQs'
+                'title' => 'FAQs',
             ],
             [
-                'title' => 'News'
+                'title' => 'News',
             ],
             [
-                'title' => 'Features'
-            ],/*
+                'title' => 'Features',
+            ], /*
             [
                 'title' => 'Events',
             ],*/
             [
-                'title' => 'Photos'
+                'title' => 'Photos',
             ],
             [
-                'title' => 'Maps'
+                'title' => 'Maps',
             ],
             [
-                'title' => 'HTML'
+                'title' => 'HTML',
             ],
             [
-                'title' => 'Widget_3Steps'
+                'title' => 'Widget_3Steps',
             ],
             [
-                'title' => 'Widget_CTA'
+                'title' => 'Widget_CTA',
             ],
             [
-                'title' => 'Widget_CTA_Form'
-            ]
+                'title' => 'Widget_CTA_Form',
+            ],
         ];
         DB::table($table)->insert($sections);
         $this->enableForeignKeys();

@@ -11,11 +11,11 @@ class TagFilters extends Filters
      */
     protected $filters = ['search'];
 
-
     /**
      * Filter the query according to those that are unanswered.
      *
      * @param string $keyword
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function search($keyword)

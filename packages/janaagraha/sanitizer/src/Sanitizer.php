@@ -17,39 +17,43 @@ class Sanitizer
      */
 
     /**
-     *  Data to sanitize
+     *  Data to sanitize.
+     *
      * @var array
      */
     protected $data;
 
     /**
-     *  Filters to apply
+     *  Filters to apply.
+     *
      * @var array
      */
     protected $rules;
 
     /**
-     *  Available filters as $name => $classPath
+     *  Available filters as $name => $classPath.
+     *
      * @var array
      */
     protected $filters = [
-        'trim' => \Janaagraha\Sanitizer\Filters\Trim::class,
-        'titleize' => \Janaagraha\Sanitizer\Filters\Titleize::class,
+        'trim'                    => \Janaagraha\Sanitizer\Filters\Trim::class,
+        'titleize'                => \Janaagraha\Sanitizer\Filters\Titleize::class,
         'capitalize_first_letter' => \Janaagraha\Sanitizer\Filters\CapitalizeFirstLetter::class,
-        'cast' => \Janaagraha\Sanitizer\Filters\Cast::class,
-        'escape_html' => \Janaagraha\Sanitizer\Filters\EscapeHTML::class,
-        'strip_tags' => \Janaagraha\Sanitizer\Filters\StripTags::class,
-        'format_date' => \Janaagraha\Sanitizer\Filters\FormatDate::class,
-        'lowercase' => \Janaagraha\Sanitizer\Filters\Lowercase::class,
-        'uppercase' => \Janaagraha\Sanitizer\Filters\Uppercase::class
+        'cast'                    => \Janaagraha\Sanitizer\Filters\Cast::class,
+        'escape_html'             => \Janaagraha\Sanitizer\Filters\EscapeHTML::class,
+        'strip_tags'              => \Janaagraha\Sanitizer\Filters\StripTags::class,
+        'format_date'             => \Janaagraha\Sanitizer\Filters\FormatDate::class,
+        'lowercase'               => \Janaagraha\Sanitizer\Filters\Lowercase::class,
+        'uppercase'               => \Janaagraha\Sanitizer\Filters\Uppercase::class,
     ];
 
     /**
      *  Create a new sanitizer instance.
      *
-     * @param  array $data
-     * @param  array $rules Rules to be applied to each data attribute
-     * @param  array $filters Available filters for this sanitizer
+     * @param array $data
+     * @param array $rules   Rules to be applied to each data attribute
+     * @param array $filters Available filters for this sanitizer
+     *
      * @return Sanitizer
      */
     public function __construct(array $data, array $rules, array $customFilters = [])
@@ -62,7 +66,8 @@ class Sanitizer
     /**
      *  Parse a rules array.
      *
-     * @param  array $rules
+     * @param array $rules
+     *
      * @return array
      */
     protected function parseRulesArray(array $rules)
@@ -77,11 +82,13 @@ class Sanitizer
                 }
             }
         }
+
         return $parsedRules;
     }
 
     /**
-     *  Sanitize the given data
+     *  Sanitize the given data.
+     *
      * @return array
      */
     public function sanitize()
@@ -90,15 +97,17 @@ class Sanitizer
         foreach ($this->data as $name => $value) {
             $sanitized[$name] = $this->sanitizeAttribute($name, $value);
         }
+
         return $sanitized;
     }
 
     /**
-     *  Sanitize the given attribute
+     *  Sanitize the given attribute.
      *
-     * @param  string $attribute Attribute name
-     * @param  mixed $value Attribute value
-     * @return mixed   Sanitized value
+     * @param string $attribute Attribute name
+     * @param mixed  $value     Attribute value
+     *
+     * @return mixed Sanitized value
      */
     protected function sanitizeAttribute($attribute, $value)
     {
@@ -107,12 +116,15 @@ class Sanitizer
                 $value = $this->applyFilter($rule['name'], $value, $rule['options']);
             }
         }
+
         return $value;
     }
 
     /**
-     *  Apply the given filter by its name
+     *  Apply the given filter by its name.
+     *
      * @param  $name
+     *
      * @return Filter
      */
     protected function applyFilter($name, $value, $options = [])
@@ -125,16 +137,18 @@ class Sanitizer
         if ($filter instanceof Closure) {
             return call_user_func_array($filter, [$value, $options]);
         } else {
-            $filter = new $filter;
+            $filter = new $filter();
+
             return $filter->apply($value, $options);
         }
     }
 
     /**
-     *  Parse a rule string formatted as filterName:option1, option2 into an array formatted as [name => filterName, options => [option1, option2]]
+     *  Parse a rule string formatted as filterName:option1, option2 into an array formatted as [name => filterName, options => [option1, option2]].
      *
-     * @param  string $rule Formatted as 'filterName:option1, option2' or just 'filterName'
-     * @return array           Formatted as [name => filterName, options => [option1, option2]]. Empty array if no filter name was found.
+     * @param string $rule Formatted as 'filterName:option1, option2' or just 'filterName'
+     *
+     * @return array Formatted as [name => filterName, options => [option1, option2]]. Empty array if no filter name was found.
      */
     protected function parseRuleString($rule)
     {
@@ -148,7 +162,7 @@ class Sanitizer
         if (!$name) {
             return [];
         }
+
         return compact('name', 'options');
     }
-
 }

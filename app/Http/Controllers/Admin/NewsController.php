@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Auth;
-use App\Models\Tag;
-use App\Models\News;
-use Illuminate\Http\Request;
 use App\Filters\NewsFilters;
-use App\Http\Requests\NewsRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\NewsRequest;
+use App\Models\News;
+use App\Models\Tag;
+use Auth;
+use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
@@ -70,14 +70,14 @@ class NewsController extends Controller
         $action = $request->get('action_type');
         $ids = $request->get('news_ids');
         News::destroy($ids);
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('news'))->with($notification);
     }
 
     protected function getNews(NewsFilters $filters)
     {
-        $perPage = (int)request('per_page');
+        $perPage = (int) request('per_page');
         $perPage = $perPage > 0 ? $perPage : 25;
 
         return News::filter($filters)

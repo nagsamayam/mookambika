@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\Tag;
 use App\Models\Review;
+use App\Models\Tag;
+use Database\DisableForeignKeys;
 use Database\TruncateTable;
 use Illuminate\Database\Seeder;
-use Database\DisableForeignKeys;
 
 class ReviewsTableSeeder extends Seeder
 {

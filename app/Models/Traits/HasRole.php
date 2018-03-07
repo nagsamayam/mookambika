@@ -34,7 +34,7 @@ trait HasRole
 
     public function isElevated(): bool
     {
-        return $this->isAdmin() OR $this->isModerator();
+        return $this->isAdmin() or $this->isModerator();
     }
 
     public function isRole($role): bool
@@ -44,6 +44,6 @@ trait HasRole
 
     public function inRoles($roles = []): bool
     {
-        return $this->role()->whereIn('slug', (array)$roles)->exists();
+        return $this->role()->whereIn('slug', (array) $roles)->exists();
     }
 }

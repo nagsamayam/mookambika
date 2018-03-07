@@ -6,6 +6,7 @@ function create($class, $attributes = [], $times = 1)
     if ($times > 1) {
         return $data;
     }
+
     return $data->first();
 }
 
@@ -19,5 +20,6 @@ function random_mobile_number()
     for ($randomNumber = mt_rand(7, 9), $i = 1; $i < 10; $i++) {
         $randomNumber .= mt_rand(0, 9);
     }
+
     return $randomNumber;
 }

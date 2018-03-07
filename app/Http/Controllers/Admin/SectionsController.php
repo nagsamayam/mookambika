@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Section;
-use Illuminate\Http\Request;
 use App\Filters\SectionFilters;
 use App\Http\Controllers\Controller;
+use App\Models\Section;
+use Illuminate\Http\Request;
 
 class SectionsController extends Controller
 {
     public function index(Request $request, SectionFilters $filters)
     {
-        $perPage = (int)$request->get('per_page');
+        $perPage = (int) $request->get('per_page');
         $perPage = $perPage > 0 ? $perPage : 25;
 
         $sections = Section::filter($filters)->paginate($perPage, ['id', 'title']);
@@ -64,7 +64,7 @@ class SectionsController extends Controller
         $action = $request->get('action_type');
         $ids = $request->get('section_ids');
         Section::destroy($ids);
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('sections'))->with($notification);
     }

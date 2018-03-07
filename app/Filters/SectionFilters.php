@@ -15,6 +15,7 @@ class SectionFilters extends Filters
      * Filter the query according to those that are unanswered.
      *
      * @param string $keyword
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function search($keyword)

@@ -11,11 +11,11 @@ class FooterFilters extends Filters
      */
     protected $filters = ['status', 'search', 'start_date', 'end_date'];
 
-
     /**
      * Filter the query by a given type.
      *
-     * @param  string $status
+     * @param string $status
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function status($status)
@@ -29,6 +29,7 @@ class FooterFilters extends Filters
      * Filter the query according to the keywords.
      *
      * @param string $keyword
+     *
      * @return \Illuminate\Database\Eloquent\Builder
      */
     protected function search($keyword)
@@ -46,5 +47,4 @@ class FooterFilters extends Filters
     {
         return $this->builder->whereRaw("date(created_at) <= '$endDate'");
     }
-
 }

@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Tag;
 use App\Filters\TagFilters;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Tag;
+use Illuminate\Http\Request;
 
 class TagsController extends Controller
 {
-
     public function index(Request $request, TagFilters $filters)
     {
-        $perPage = (int)$request->get('per_page');
+        $perPage = (int) $request->get('per_page');
         $perPage = $perPage > 0 ? $perPage : 25;
 
         $tags = Tag::latest()
@@ -67,7 +66,7 @@ class TagsController extends Controller
         $action = $request->get('action_type');
         $ids = $request->get('tag_ids');
         Tag::destroy($ids);
-        $notification = $this->notification(ucfirst($action) . 'ed successfully', 'success');
+        $notification = $this->notification(ucfirst($action).'ed successfully', 'success');
 
         return redirect(route('tags'))->with($notification);
     }
@@ -75,12 +74,12 @@ class TagsController extends Controller
     private function _validateInput()
     {
         $data = $this->validate(request(), [
-            'title' => 'bail|required|min:3|max:150',
+            'title'            => 'bail|required|min:3|max:150',
             'meta_description' => 'bail|sometimes|nullable|min:3',
         ]);
 
         $filters = [
-            'title' => 'strip_tags|trim|lowercase',
+            'title'            => 'strip_tags|trim|lowercase',
             'meta_description' => 'strip_tags|trim|capitalize_first_letter',
         ];
 

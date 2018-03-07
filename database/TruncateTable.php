@@ -21,10 +21,10 @@ trait TruncateTable
                 return DB::table($table)->truncate();
 
             case 'postgres':
-                return DB::statement('TRUNCATE TABLE ' . $table . ' CASCADE');
+                return DB::statement('TRUNCATE TABLE '.$table.' CASCADE');
 
             case 'sqlite':
-                return DB::statement('DELETE FROM ' . $table);
+                return DB::statement('DELETE FROM '.$table);
         }
 
         return false;

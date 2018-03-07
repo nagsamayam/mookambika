@@ -18,11 +18,12 @@ class Section extends Model
             ->withTimestamps();
     }
 
-    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = NULL)
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null)
     {
         if ($parent instanceof Page) {
             return new PageSectionPivot($parent, $attributes, $table, $exists);
         }
+
         return parent::newPivot($parent, $attributes, $table, $exists);
     }
 

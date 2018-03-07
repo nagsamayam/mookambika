@@ -2,10 +2,10 @@
 
 namespace App\Models;
 
+use App\Filters\NewsFilters;
 use App\Traits\HasSlug;
 use App\Traits\HasTags;
 use App\Traits\Publishable;
-use App\Filters\NewsFilters;
 use Illuminate\Database\Eloquent\Model;
 
 class News extends Model
@@ -45,7 +45,8 @@ class News extends Model
     {
         return static::legacy()->published()->first(['id', 'published_at']);
     }
-    /**
+
+    /*
      * Set the proper slug attribute.
      *
      * @param string $value
@@ -57,5 +58,4 @@ class News extends Model
         }
         $this->attributes['slug'] = $slug;
     }*/
-
 }

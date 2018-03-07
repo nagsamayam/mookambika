@@ -65,5 +65,4 @@ trait Publishable
     {
         return static::legacy()->published()->first(['id', 'published_at']);
     }
-
 }

@@ -3,8 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Page extends Model
 {
@@ -41,9 +41,10 @@ class Page extends Model
     }
 
     /**
-     * Get home page
+     * Get home page.
      *
      * @param $query
+     *
      * @return mixed
      */
     public function scopeHomePage($query)
@@ -53,11 +54,12 @@ class Page extends Model
             ->first();
     }
 
-    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = NULL)
+    public function newPivot(Model $parent, array $attributes, $table, $exists, $using = null)
     {
         if ($parent instanceof Section) {
             return new PageSectionPivot($parent, $attributes, $table, $exists);
         }
+
         return parent::newPivot($parent, $attributes, $table, $exists);
     }
 }

@@ -11,6 +11,6 @@ return [
     */
     'google' => [
         'open' => env('GOOGLE_ANALYTICS_OPEN') ?: false,
-        'id' => env('GOOGLE_ANALYTICS_ID', 'UA-XXXXX-X'),
-    ]
+        'id'   => env('GOOGLE_ANALYTICS_ID', 'UA-XXXXX-X'),
+    ],
 ];

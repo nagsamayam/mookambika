@@ -4,14 +4,13 @@ namespace Janaagraha\Sanitizer;
 
 use Closure;
 use InvalidArgumentException;
-use Janaagraha\Sanitizer\Sanitizer;
 use Janaagraha\Sanitizer\Contracts\Filter;
 
 class Factory
 {
-
     /**
-     *  List of custom filters
+     *  List of custom filters.
+     *
      * @var array
      */
     protected $customFilters;
@@ -27,10 +26,11 @@ class Factory
     }
 
     /**
-     *  Create a new Sanitizer instance
+     *  Create a new Sanitizer instance.
      *
-     * @param  array $data Data to be sanitized
-     * @param  array $rules Filters to be applied to the given data
+     * @param array $data  Data to be sanitized
+     * @param array $rules Filters to be applied to the given data
+     *
      * @return Sanitizer
      */
     public function make(array $data, array $rules)
@@ -41,9 +41,11 @@ class Factory
     /**
      *  Add a custom filters to all Sanitizers created with this Factory.
      *
-     * @param  string $name Name of the filter
-     * @param  mixed $extension Either the full class name of a Filter class implementing the Filter contract, or a Closure.
+     * @param string $name      Name of the filter
+     * @param mixed  $extension Either the full class name of a Filter class implementing the Filter contract, or a Closure.
+     *
      * @throws InvalidArgumentException
+     *
      * @return void
      */
     public function extend($name, $customFilter)
@@ -56,5 +58,4 @@ class Factory
         }
         $this->customFilters[$name] = $customFilter;
     }
-
 }
